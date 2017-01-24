@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Students App</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            table tr:nth-child(odd){
+                background-color: aliceblue;
+            }
+            
+        </style>
+    </head>
+    <body ng-app="orderApp">
+        <div class="container">
+        <h1 class="text-center">Order Price Calculator</h1>
+     <table class="table table-condensed" ng-controller="orderController">
+         <tr>
+         <th>Item Description</th>
+            <th>Price</th> 
+             <th>Enter Quantity</th>
+         </tr>
+         <tr ng-repeat="x in items">
+         <td>{{x.item}}</td>
+             <td><input type="number" ng-model="x.price"</td>
+             <td><input type="number" ng-model="x.qty"></td>
+         </tr>
+         <tr>
+         <td colspan="2">Total Order Price : </td>
+             <td>{{total()}}</td>
+         </tr>
+        </table>
+            </div>
+        <script>
+        var orderApp = angular.module('orderApp',[]);
+            orderApp.controller('orderController', function($scope){
+                $scope.items = [{item: 'ipad', price:900, qty:0},{item:'iphone', price: 600, qty:0},{item:'macbook', price:2000, qty:0 }];
+                
+                $scope.total = function(){
+                    var result=0;
+                    for(var i=0;i<$scope.items.length;i++){
+                        result+= $scope.items[i].qty * $scope.items[i].price;
+                    }
+                    return result;
+                }
+                
+            });
+        
+        
+        </script>
+    </body>
+</html>

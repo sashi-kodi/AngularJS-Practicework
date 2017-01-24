@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Students App</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+          
+
+            ul li img{
+                
+                display:inline-block;
+                width:500px;
+                height:400px;
+                float:left;
+                
+            }
+            ul li{
+                clear:both;
+            }
+            .clear{
+                clear:both;
+            }
+
+        </style>
+    </head>
+    <body ng-app="shoppingCart">
+        <div class="container">
+        <div ng-controller="ShoppingController">
+        <h1 class="text-center">Shopping Cart App</h1>
+            
+            <ul class="list-unstyled">
+            <li ng-repeat="item in items">
+                <div>
+                    
+                <img ng-src="images/{{item.name}}.jpeg">
+                    <h3>{{item.name|uppercase}}</h3>
+                    <h5>{{item.price | currency}}</h5>
+                    <button class="btn btn-primary" ng-click="addToCart($index)">Add to Cart</button>
+                </div>
+            </li>
+            
+            </ul>
+<!--
+            <div class="row" ng-repeat="x in splitItems">
+            <div class="col-sm-6" ng-repeat="item in x"></div>
+             <div>
+                    <h3>{{item.name|uppercase}}</h3>
+                <img ng-src="images/{{item.name}}.jpeg">
+                    <h5>{{item.price}}</h5>
+                    <button class="btn btn-primary" ng-click="addToCart(item.name)">Add to Cart</button>
+                </div>
+            </div>
+-->
+            <br><br><br><br>
+            <div class="clear">
+            <button class="clear btn btn-large btn-success" ng-click="summary=true">Click to see Cart Summary</button>
+          <p ng-show="summary===true">You have chosen {{count}} items and they are: {{showSummary()}}.Total Amount to be paid is {{total}}</p>
+            </div>
+            
+        </div>
+            </div>
+    <script>
+        
+        var app= angular.module('shoppingCart',[]);
+       app.controller('ShoppingController', function($scope){
+           
+           $scope.summary=false;
+           $scope.total =0;
+           $scope.count=0;
+           $scope.items=[
+               {name:'ipad', price:600, isselected:false},{name:'iphone', price:600, isselected:false},
+               
+               {name:'ipadmini', price:400, isselected:false},{name:'macbook', price:2000, isselected:false}
+               ];
+           
+           $scope.addToCart = function(index){
+              
+               $scope.items[index].isselected = true;
+               $scope.total += $scope.items[index].price;
+               $scope.count++;
+               
+               
+               
+           }
+           
+           
+           $scope.showSummary = function(){
+               var text="";
+               for(var i=0;i<$scope.items.length;i++){
+                   if($scope.items[i].isselected === true) {
+                       text = text + $scope.items[i].name.toUpperCase() + ",";
+                       
+                   }
+               }
+               text=text.slice(0,text.length-1);
+               return text;
+           }
+           
+           
+       });
+        </script>
+    </body>
+</html>

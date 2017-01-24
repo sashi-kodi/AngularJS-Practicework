@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Students App</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--          <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.14/angular-filter.min.js"></script>-->
+      
+    </head>
+    <body ng-app="countryListApp">
+        <div class="container" ng-controller="countryListController"> 
+        <h1 class="text-center">Country List App</h1>
+        <p>Choose Country: </p>
+            <select ng-model="selectedcountry" ng-options="item for item in countries" ng-change="showStates()"></select> 
+           <p>Choose State: </p>
+            <select ng-model="selectedstate" ng-options="item for item in stateslist" ng-change="showCities()"></select>  
+             <p>Choose City: </p>
+            <select ng-model="selectedcity" ng-options="item for item in citieslist"></select>  
+            
+            <h4>You selected {{selectedcountry}}..{{selectedstate}}..{{selectedcity}}!</h4>
+        </div>
+
+           
+    <script>
+        
+        var app= angular.module('countryListApp',[]);
+       
+           app.controller('countryListController', function($scope){
+               
+               $scope.countries = ['USA', 'India'];
+               
+              var states =[{country: 'USA', states:['CA', 'WA', 'Nevada']}, {country:'India', states: ['Andhra Pradesh', 'TamilNadu']}
+                              ];
+              var cities = [{state:'CA', cities:['San Jose', 'San Francisco', 'San Ramon']},
+                            {state:'Nevada', cities:['Las Vegas', 'Reno', 'Lake Tahoe']},
+                            {state:'WA', cities:['Seattle', 'Bothell']},
+                            {state:'Andhra Pradesh', cities:['Vizag', 'Hyderabad']},
+                            {state:'TamilNadu', cities:['Chennai', 'Madurai']},
+                           
+                           ];
+               
+               function lookup(arr, key, value, dest){
+                   console.log('inside lookup');
+                   for(var i=0;i<arr.length;i++){
+                       if(arr[i][key] === value) {
+                           console.log(arr[i][dest]);
+                           return arr[i][dest];
+                         }
+                   }
+               }
+               
+               $scope.showStates = function(){
+                   
+                   $scope.stateslist = lookup(states,'country',$scope.selectedcountry,'states');
+                   console.log($scope.stateslist);
+               }
+               
+                $scope.showCities = function(){
+                   
+                   $scope.citieslist = lookup(cities,'state',$scope.selectedstate,'cities');
+                   console.log($scope.citieslist);
+               }
+               
+               
+        
+           
+       });
+        </script>
+    </body>
+</html>
