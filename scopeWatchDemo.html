@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Creating a Watch</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myCtrl">
+Enter your name: <input type="textbox" ng-model="name">
+<br>
+{{greeting}}
+<script>
+var myapp = angular.module('myapp' , []);
+    myapp.controller('myCtrl', function($scope){
+     $scope.$watch('name', function(newValue, oldvalue){
+         $scope.greeting = "Welcome to Angular JS "+ $scope.name;
+
+     });
+    });
+</script>
+</body>
+</html>

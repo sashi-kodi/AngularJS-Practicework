@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Ticking clock</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+<body ng-app="timeApp" ng-controller="timeCtrl">
+<p>{{time}}</p>
+<script>
+    var timeApp= angular.module('timeApp', []);
+    timeApp.controller('timeCtrl', function($scope){
+        $scope.time = new Date().toLocaleTimeString();
+
+        function updateTime(){
+            $scope.time = new Date().toLocaleTimeString();
+            $scope.$apply();
+        }
+        setInterval(updateTime,1000);
+    });
+
+</script>
+</body>
+</html>

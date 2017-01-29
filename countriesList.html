@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Ng Route example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+</head>
+<body ng-app="myapp">
+<div ng-view></div>
+
+<script>
+    var myapp = angular.module('myapp',['ngRoute']);
+    myapp.config(function($routeProvider){
+        $routeProvider
+                .when('/',{
+                    templateUrl:'partials/countrylist.html',
+                    controller: 'CountriesController'
+                })
+                .when('/:countryname', {
+                    templateUrl: 'partials/country-detail.html',
+                    controller:'CountryDetailController'
+                })
+                .otherwise({redirectTo:'/'});
+    });
+    myapp.controller('CountriesController', function($scope){
+        $scope.countries =['India', 'United States of America', 'United Kingdom', 'Canada'];
+    });
+    myapp.controller('CountriesController', function($scope,$routeParams){
+        $scope.country =$routeParams.countryname;
+    });
+</script>
+</body>
+</html>

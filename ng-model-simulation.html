@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" id="name">
+<p id="output">hello</p>
+</body>
+<script>
+    var nameEl = document.getElementById('name');
+    var outputEl = document.getElementById('output');
+    nameEl.addEventListener('keyup', function(){
+        var text = this.value;
+        outputEl.textContent = "Hello " + text;
+    });
+</script>
+</html>
