@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Ticking clock</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+</head>
+<body ng-app="formApp" ng-controller="formCtrl">
+<div class="container">
+  <div class="row">
+   <div class="col-sm-8 col-sm-offset-2">
+
+       <div class="page-header"> <h1>Angular JS Form Validation</h1></div>
+        <form name="userform" novalidate>
+
+            <div class="form-group" ng-class="{'has-error':userform.name.$invalid && !userform.name.$pristine}">
+                <label>Name:</label>
+                <input type="text" name="name" required ng-model="user.name" class="form-control">
+                <p ng-show="userform.name.$error.required && !userform.name.$pristine" class="help-block">Name is required</p>
+
+            </div>
+
+
+
+
+            <div class="form-group" ng-class="{ 'has-error' : userform.username.$invalid && !userform.username.$pristine }">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" ng-model="user.username" ng-minlength="3" ng-maxlength="8">
+                <p ng-show="userform.username.$error.minlength" class="help-block">Username is too short.</p>
+                <p ng-show="userform.username.$error.required && !userform.username.$pristine" class="help-block">Username is required</p>
+                <p ng-show="userform.username.$error.maxlength" class="help-block">Username is too long.</p>
+            </div>
+
+
+            <div class="form-group" ng-class="{'has-error':userform.email.$invalid && !userform.email.$pristine}">
+                <label>Email:</label>
+                <input type="email" name="email" required ng-model="user.email" class="form-control">
+                <p ng-show="userform.email.$error.required && !userform.email.$pristine" class="help-block">Email is required</p>
+                <p ng-show="userform.email.$invalid && !userform.email.$pristine" class="help-block">Enter valid email</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary" ng-click="storeUserDetails()" ng-disabled="userform.$invalid">Submit</button>
+
+        </form>
+
+
+   </div>
+
+  </div>
+
+</div>
+
+<script>
+    var formApp= angular.module('formApp', []);
+    formApp.controller('formCtrl', function($scope, $window){
+        $scope.user = {name:"", email:"", username:""};
+        $scope.storeUserDetails = function(){
+               $window.alert("Awesome");
+        }
+    });
+
+</script>
+</body>
+</html>
