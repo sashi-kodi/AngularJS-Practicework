@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Checkboxes Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="myCtrl">
+<form>
+Are you awesome?
+<input type="checkbox" ng-model="awesome" ng-true-value="yes" ng-false-value="no">
+    {{awesome}}
+
+  <div class="form-group">
+
+      <label class="checkbox-inline">
+      <input type="checkbox" name="favcolor" ng-model="formdata.favcolors.red">Red
+      </label>
+      <label class="checkbox-inline">
+          <input type="checkbox" name="favcolor" ng-model="formdata.favcolors.green">Green
+      </label>
+
+      <label class="checkbox-inline">
+          <input type="checkbox" name="favcolor" ng-model="formdata.favcolors.blue">Blue
+      </label>
+      <label class="checkbox">
+          <input type="checkbox" name="favcolor"  ng-click ="checkAll()" ng-model="formdata.favcolors.all">All
+      </label>
+
+  </div>
+
+    {{formdata.favcolors}}
+
+
+</form>
+
+<script>
+var app=angular.module('myapp', []);
+    app.controller('myCtrl', function($scope){
+        $scope.checkAll = function(){
+            if($scope.formdata.favcolors.all) {
+                $scope.formdata.favcolors.green=true;
+                $scope.formdata.favcolors.blue = true;
+                $scope.formdata.favcolors.red=true;
+            }else{
+                $scope.formdata.favcolors.green=false;
+                $scope.formdata.favcolors.blue = false;
+                $scope.formdata.favcolors.red=false;
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
