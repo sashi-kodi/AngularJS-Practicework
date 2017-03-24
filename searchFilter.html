@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 </head>
 <body ng-app="namesApp" ng-controller="nameCtrl">
-Search:
+Search Name:
 <input type="text" ng-model="query">
 <ul>
     <li ng-repeat="name in names| filter:query">{{name}}
