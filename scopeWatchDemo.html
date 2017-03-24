@@ -8,12 +8,12 @@
 <body ng-app="myapp" ng-controller="myCtrl">
 Enter your name: <input type="textbox" ng-model="name">
 <br>
-{{greeting}}
+{{greetingmsg}}
 <script>
 var myapp = angular.module('myapp' , []);
     myapp.controller('myCtrl', function($scope){
      $scope.$watch('name', function(newValue, oldvalue){
-         $scope.greeting = "Welcome to Angular JS "+ $scope.name;
+         $scope.greetingmsg = "Welcome to Angular JS "+ $scope.name;
 
      });
     });
