@@ -8,7 +8,7 @@
 <body ng-app="timeApp" ng-controller="timeCtrl">
 <p>{{time}}</p>
 <script>
-    var timeApp= angular.module('timeApp', []);
+    var timeapp= angular.module('timeApp', []);
     timeApp.controller('timeCtrl', function($scope, $interval){
         $scope.time = new Date().toLocaleTimeString();
 
