@@ -10,8 +10,8 @@
 <div ng-view></div>
 
 <script>
-    var myapp = angular.module('myapp',['ngRoute']);
-    myapp.config(function($routeProvider){
+    var myappe = angular.module('myapp',['ngRoute']);
+    myappe.config(function($routeProvider){
         $routeProvider
                 .when('/',{
                     templateUrl:'partials/countrylist.html',
@@ -23,10 +23,10 @@
                 })
                 .otherwise({redirectTo:'/'});
     });
-    myapp.controller('CountriesController', function($scope){
+    myappe.controller('CountriesController', function($scope){
         $scope.countries =['India', 'United States of America', 'United Kingdom', 'Canada'];
     });
-    myapp.controller('CountriesController', function($scope,$routeParams){
+    myappe.controller('CountriesController', function($scope,$routeParams){
         $scope.country =$routeParams.countryname;
     });
 </script>
